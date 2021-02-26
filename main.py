@@ -138,7 +138,7 @@ class Experiment:
     #         file_object.write(s)
 
 def runTrial(p, trial, n):
-    print(os.getcwd())
+    # print(os.getcwd())
     e = Experiment()
     if p == '1': process = e.process1
     if p == '2': process = e.process2
@@ -146,15 +146,15 @@ def runTrial(p, trial, n):
     N = 2**n - 1
     binary_tree = [0]*(N)
     steps = 0
-    print('here1')
+    # print('here1')
     while 0 in binary_tree:
         steps += 1
         i = process(binary_tree)
         e.mark(binary_tree, i)
-    print('here2')
+    # print('here2')
     with open(f'results_{p}_{trial}_{n}.txt', 'w') as file_object:
             file_object.write(f'{steps}')
-    print('DONE')
+    # print('DONE')
 
 def run_p(p):
     for trial in range(0, 1):
@@ -165,18 +165,18 @@ def run_p(p):
     
         
 # e = Experiment()
-print('==================================================')
-print('PROCESS 1')
-print('==================================================')
+# print('==================================================')
+# print('PROCESS 1')
+# print('==================================================')
 # e.run(e.process1, '1')
 run_p('1')
-print('==================================================')
-print('PROCESS 2')
-print('==================================================')
+# print('==================================================')
+# print('PROCESS 2')
+# print('==================================================')
 # e.run(e.process2, '2')
 run_p('2')
-print('==================================================')
-print('PROCESS 3')
-print('==================================================')
+# print('==================================================')
+# print('PROCESS 3')
+# print('==================================================')
 # e.run(e.process3, '3')
 run_p('3')
