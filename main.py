@@ -5,6 +5,7 @@ from random import choice
 import threading
 import os
 import logging
+import multiprocessing
 
 # sys.setrecursionlimit(4000)
 
@@ -16,7 +17,7 @@ class Experiment:
         self.nodes_sent_2 = {}
 
     def process1(self, t):
-        logging.info('here_p')
+        # logging.info('here_p')
         return randint(0, len(t)-1)
 
     def process2(self, t):
@@ -96,7 +97,7 @@ class Experiment:
     def mark(self, t, i):
         if t[i] == 1: return
         t[i] = 1
-        logging.info('here_m')
+        # logging.info('here_m')
         if PRINT_FLAG: print('==================================================')
         if PRINT_FLAG: print(f'M: {t}')
         self.perfromMarkingRules(t, i)
@@ -157,26 +158,26 @@ def runTrial(p, trial, n):
     # print('DONE')
 
 def run_p(p):
-    for trial in range(0, 1):
-        for n in range(10, 12):
-            t = threading.Thread(target=runTrial, name=f'=process_{p}_trial_{trial}_n_{n}', args=(p, trial, n,))
+    for trial in range(0, 10):
+        for n in range(10, 21):
+            t = multiprocessing.Process(target=runTrial, name=f'=process_{p}_trial_{trial}_n_{n}', args=(p, trial, n,))
             # t.daemon = True
             t.start()
     
-        
-# e = Experiment()
-# print('==================================================')
-# print('PROCESS 1')
-# print('==================================================')
-# e.run(e.process1, '1')
-run_p('1')
-# print('==================================================')
-# print('PROCESS 2')
-# print('==================================================')
-# e.run(e.process2, '2')
-run_p('2')
-# print('==================================================')
-# print('PROCESS 3')
-# print('==================================================')
-# e.run(e.process3, '3')
-run_p('3')
+if __name__ == '__main__':
+    # e = Experiment()
+    # print('==================================================')
+    # print('PROCESS 1')
+    # print('==================================================')
+    # e.run(e.process1, '1')
+    run_p('1')
+    # print('==================================================')
+    # print('PROCESS 2')
+    # print('==================================================')
+    # e.run(e.process2, '2')
+    run_p('2')
+    # print('==================================================')
+    # print('PROCESS 3')
+    # print('==================================================')
+    # e.run(e.process3, '3')
+    run_p('3')
