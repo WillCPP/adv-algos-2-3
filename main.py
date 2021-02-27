@@ -1,6 +1,9 @@
+#
+# This file runs the processes
+#
+
 from random import randint
 from random import choice
-# from queue import LifoQueue
 # import sys
 import threading
 import os

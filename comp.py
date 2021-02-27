@@ -1,3 +1,7 @@
+#
+# This file compiles all the data and gives the averages of the trials
+#
+
 from pathlib import Path
 files = []
 data = {1: {
